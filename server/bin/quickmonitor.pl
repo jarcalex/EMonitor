@@ -6,10 +6,10 @@
 
 =head1 USAGE
      [ -a action][[-c configuration_file]...]
-     [-d delay][-h][-n][-v[v[...]]][-t timeout][-V]
+     [-h][-v][-t timeout][-V]
 
 =head1 DESCRIPTION
-  QuickMonitor is designed to extract data from system and
+  QuickMonitor is designed to execute cmd and
   store statistic into RRD.
 
 =head1 OPTIONS
