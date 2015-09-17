@@ -1,0 +1,98 @@
+--- RAW_DATA
+---
+Appartement:
+- name:        humidity,temperature,heat_index
+  source:      /usr/bin/python /home/pi/get_info.py
+  regexp:      ^Humidity:\s(\d+\.\d+)\s+\%\s+Temperature:\s(\d+\.\d+)\s\*C\s+Heat\sindex:\s(\d+\.\d+)
+  postprocess:
+  rrd:         GAUGE
+
+
+Valhalla:
+- name:        memory_available
+  regexp:      Mem:\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)
+  postprocess: ($1+$2+$3+$4)
+  rrd:         GAUGE
+
+- name:        net_received,net_send
+  regexp:      RX\sbytes\:(\d+).+TX\sbytes\:(\d+)
+  postprocess: $1*-1,$2
+  rrd:         DERIVE
+  min:         0
+
+- name:        memory_free
+  regexp:      Mem:\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)
+  postprocess: $1
+  rrd:         GAUGE
+
+- name:        load1,load5,load15
+  regexp:      ^\s(\d+\.\d+)\.\s(\d+\.\d+)\.\s(\d+\.\d+)
+  postprocess: 
+  rrd:         GAUGE
+
+- name:        soc_temp
+  regexp:      ^Temperature:\s+(\d+\.\d+)
+  postprocess:
+  rrd:         GAUGE
+
+- name:        uptime
+  regexp:      ^(\d+\.\d\d)\s\d+
+  postprocess: 
+  rrd:         GAUGE
+
+- name:        sdcard_root_total,sdcard_root_used
+  regexp:      \s+(\d+)\s+(\d+)\s+\d+\s+\d+\%\s+\/\s*$
+  postprocess: $1/1024,$2/1024
+  rrd:         GAUGE
+
+- name:        usb_ddl_total,usb_ddl_used
+  regexp:      \s+(\d+)\s+(\d+)\s+\d+\s+\d+\%\s+\/app/dl\s*$
+  postprocess: $1/1024,$2/1024
+  rrd:         GAUGE
+
+- name:        ip_ban
+  regexp:      Ban_ip:\s+(\d+)\s*$
+  postprocess:
+  rrd:         GAUGE
+
+DarkSurt:
+- name:        memory_available
+  regexp:      Mem:\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)
+  postprocess: ($1+$2+$3+$4)
+  rrd:         GAUGE
+
+- name:        memory_free
+  regexp:      Mem:\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)
+  postprocess: $1
+  rrd:         GAUGE
+
+- name:        load1,load5,load15
+  regexp:      ^\s(\d+\.\d+)\.\s(\d+\.\d+)\.\s(\d+\.\d+)
+  postprocess: 
+  rrd:         GAUGE
+
+- name:        soc_temp
+  regexp:      ^Temperature:\s+(\d+\.\d+)
+  postprocess: 
+  rrd:         GAUGE
+
+Fenrir:
+- name:        memory_available
+  regexp:      Mem:\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)
+  postprocess: ($1+$2+$3+$4)
+  rrd:         GAUGE
+
+- name:        memory_free
+  regexp:      Mem:\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)
+  postprocess: $1
+  rrd:         GAUGE
+
+- name:        load1,load5,load15
+  regexp:      ^\s(\d+\.\d+)\.\s(\d+\.\d+)\.\s(\d+\.\d+)
+  postprocess:
+  rrd:         GAUGE
+
+- name:        soc_temp
+  regexp:      ^Temperature:\s+(\d+\.\d+)
+  postprocess:
+  rrd:         GAUGE

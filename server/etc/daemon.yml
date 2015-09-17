@@ -1,0 +1,9 @@
+--- daemon
+---
+  delay:    120
+  user:     root
+  group:    root
+  webroot:  /app/www/web
+  Valhalla: nc valhalla 9500
+  DarkSurt: nc darksurt 9500
+  Fenrir:   nc fenrir 9500

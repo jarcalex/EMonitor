@@ -1,0 +1,106 @@
+--- RRD_graph
+---
+Appartement:
+- RRD:
+   humidity:
+     label: Humidité
+   temperature:
+     label: Temperature
+   heat_index:
+     label: Chaleur ressentie
+  name: Temperature/Humidity
+
+DarkSurt:
+- RRD:
+    load1:
+      color: '#FF7777'
+      label: Load 1min
+    load15:
+      color: '#77FF77'
+      label: Load 15min
+    load5:
+      color: '#7777FF'
+      label: Load 5min
+  name: CPU Loads
+- RRD:
+    memory_available:
+      color: '#7777FF'
+      label: Available Memory (MB)
+    memory_free:
+      color: '#FF7777'
+      label: Free Memory (MB)
+  name: Memory
+- RRD:
+    soc_temp:
+      label: Core temperature (deg C)
+  name: Temperature
+
+Fenrir:
+- RRD:
+    load1:
+      color: '#FF7777'
+      label: Load 1min
+    load15:
+      color: '#77FF77'
+      label: Load 15min
+    load5:
+      color: '#7777FF'
+      label: Load 5min
+  name: CPU Loads
+- RRD:
+    memory_available:
+      color: '#7777FF'
+      label: Available Memory (MB)
+    memory_free:
+      color: '#FF7777'
+      label: Free Memory (MB)
+  name: Memory
+- RRD:
+    soc_temp:
+      label: Core temperature (deg C)
+  name: Temperature
+
+Valhalla:
+- RRD:
+    load1:
+      color: '#FF7777'
+      label: Load 1min
+    load15:
+      color: '#77FF77'
+      label: Load 15min
+    load5:
+      color: '#7777FF'
+      label: Load 5min
+  name: CPU Loads
+- RRD:
+    memory_available:
+      color: '#7777FF'
+      label: Available Memory (MB)
+    memory_free:
+      color: '#FF7777'
+      label: Free Memory (MB)
+  name: Memory
+- RRD:
+    soc_temp:
+      label: Core temperature (deg C)
+  name: Temperature
+- RRD:
+    net_send:
+      label: Upload bandwidth (bytes)
+      lines: { fill: true }
+    net_received:
+      label: Download bandwidth (bytes)
+      lines: { fill: true }
+  name: Network
+- RRD:
+    ip_ban:
+      label: Nb IP
+  name: IP ban
+- RRD:
+    usb_ddl_used:
+      label: Use Space
+      color: '#7777FF'
+    usb_ddl_total:
+      label: Total Space
+      color: '#FF7777'
+  name: FS DDL
