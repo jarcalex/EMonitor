@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export DETAIL_LINE_COUNT=5
-
+seuilTemp=50.0
 
 echo "[UpTime]"
 UpTime=`cat /proc/uptime`
@@ -52,6 +52,18 @@ echo "<--------------------------->"
 echo "[TEMP]"
 Heat=`vcgencmd measure_temp | sed -e s/temp=// -e s/\'C//`
 echo "Temperature: ${Heat}"
+
+var=$(expr $Heat '>' $seuilTemp)
+OUTPUT="/tmp/AlerteTemp"
+
+if [ -e ${OUTPUT} ]; then
+        find ${OUTPUT} -mmin +30 -exec rm -f {} \;
+fi
+
+if [ "$var" -eq 1 ] && [ ! -e ${OUTPUT} ]; then
+# Send notification
+#        Return=`send_sms.sh "Alerte temperature sur $HOSTNAME: ${Heat}" "${OUTPUT}"`
+fi
 
 echo "<--------------------------->"
 
