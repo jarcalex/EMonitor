@@ -13,8 +13,10 @@ yum install xinetd
 
 ### MEP
 
-service EMonitor
-{
+ service EMonitor
+ 
+ {
+ 
         type           = UNLISTED
         port           = 9500
         socket_type    = stream
@@ -32,7 +34,7 @@ service EMonitor
         log_on_success =
 
         disable        = no
-}
+ }
 
 ## Installation du Collecteur
 
