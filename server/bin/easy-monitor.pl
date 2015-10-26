@@ -2,14 +2,14 @@
 
 =head1 NAME
   
-  QuickMonitor
+  Easy-Monitor
 
 =head1 USAGE
      [ -a action][[-c configuration_file]...]
      [-h][-v][-t timeout][-V]
 
 =head1 DESCRIPTION
-  QuickMonitor is designed to execute cmd and
+  Easy-Monitor is designed to execute cmd and
   store statistic into RRD.
 
 =head1 OPTIONS
@@ -43,13 +43,13 @@ use Data::Dumper;
 use Log::Rolling;
 
 my $VERSION  = "1.0.0";
-my $pidfile  = "/var/run/quickmonitor.pid";
+my $pidfile  = "/var/run/e-monitor.pid";
 my $configuration = Configuration->new();
 my $opt_help;
 my $opt_action;
-my $progName = "QuickMonitor";
-my $TraceFile = "/var/log/quickmonitor.log";
-my $outFile = "/var/log/quickmonitor.out";
+my $progName = "Easy-Monitor";
+my $TraceFile = "/var/log/e-monitor.log";
+my $outFile = "/var/log/e-monitor.out";
 
 
 # -----------------------------------------------------------------------------
