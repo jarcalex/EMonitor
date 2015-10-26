@@ -1,1 +1,1 @@
-# QCMonitor
+# EMonitor - Easy Monitor
