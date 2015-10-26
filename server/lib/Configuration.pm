@@ -33,8 +33,8 @@ sub Load
   my ($path,$file) = /(.*)\/([^\/]*)$/;
 
   if ( scalar(@{$this->{'daemon'}->{'confFiles'}}) == 0 ) {
-    push (@{$this->{'daemon'}->{'confFiles'}}, '/opt/valhalla/QuickMonitor/etc/daemon.yml');
-    @{$this->{'daemon'}->{'confFiles'}} = ( @{$this->{'daemon'}->{'confFiles'}}, glob "/opt/valhalla/QuickMonitor/conf.d/*.yml" ) ;
+    push (@{$this->{'daemon'}->{'confFiles'}}, '/opt/valhalla/EasyMonitor/etc/daemon.yml');
+    @{$this->{'daemon'}->{'confFiles'}} = ( @{$this->{'daemon'}->{'confFiles'}}, glob "/opt/valhalla/EasyMonitor/conf.d/*.yml" ) ;
   }
   my %global;
   foreach ( @{$this->{'daemon'}->{'confFiles'}} ) {
@@ -58,7 +58,7 @@ sub Load
   $this->{'daemon'}->{'user'}        ||= "pi";
   $this->{'daemon'}->{'group'}       ||= "pi";
   -d "$path/web" and $this->{'daemon'}->{'webroot'}     ||= "$path/web";
-  $this->{'daemon'}->{'webroot'}     ||= "/usr/share/rpimonitor/web";
+  $this->{'daemon'}->{'webroot'}     ||= "/usr/share/easymonitor/web";
   $this->{'daemon'}->{'delay'}       ||= 10;
   $this->{'daemon'}->{'timeout'}     ||= 5;
   # $this->{'daemon'}->{'sharedmemkey'}||= 20130906;
@@ -89,20 +89,6 @@ sub Load
     }
   }
   #print Data::Dumper->Dump([$this->{'web'}]);
-
-  # manage menu
-  # foreach (@{$this->{'web'}->{'status'}}) {
-    # $_->{'name'} and push(@{$this->{'menu'}->{'status'}}, $_->{'name'});
-  # }
-  # foreach (@{$this->{'web'}->{'statistics'}}) {
-    # $_->{'name'} and push(@{$this->{'menu'}->{'statistics'}}, $_->{'name'});
-  # }
-
-  # $this->{'sharedmem'} = IPC::ShareLite->new(
-        # -key     => $this->{'daemon'}->{'sharedmemkey'},
-        # -create  => 'yes',
-        # -destroy => 'no'
-    # ) or die $!;
 
   if ( $this->{'show'} ) {
     die Data::Dumper->Dump([$this]);
