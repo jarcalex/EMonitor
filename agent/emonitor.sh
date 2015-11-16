@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export DETAIL_LINE_COUNT=5
-seuilTemp=50.0
+seuilTemp=68.0
 
 echo "[UpTime]"
 UpTime=`cat /proc/uptime`
@@ -11,14 +11,19 @@ echo "${UpTime}"
 echo "<--------------------------->"
 
 echo "[FS]"
-FS=`df -T | grep -vE "tmpfs|rootfs|Filesystem|Type"  | uniq -w 15`
+#FS=`df -T | grep -vE "tmpfs|rootfs|Filesystem|Type"  | uniq -w 15`
+# Del head line
+# Only local
+FS=`df -Tl -x tmpfs -x rootfs -x devtmpfs | sed 1d`
 echo "${FS}"
 
 echo "<--------------------------->"
 
 echo "[getLoad]"
-getLoad=`uptime | awk -F ":" '{print $NF}' | sed s/,/./g`
-echo "${getLoad}"
+#getLoad=`uptime | awk -F ":" '{print $NF}' | sed s/,/./g`
+getLoad=`cat /proc/loadavg`
+echo "load: ${getLoad}"
+
 
 echo "<--------------------------->"
 
@@ -50,7 +55,8 @@ echo "${cpuFreqGovernor}"
 echo "<--------------------------->"
 
 echo "[TEMP]"
-Heat=`vcgencmd measure_temp | sed -e s/temp=// -e s/\'C//`
+#Heat=`vcgencmd measure_temp | sed -e s/temp=// -e s/\'C//`
+Heat=`awk '{printf "%.1f \n", $1/1000}' < /sys/class/thermal/thermal_zone0/temp`
 echo "Temperature: ${Heat}"
 
 var=$(expr $Heat '>' $seuilTemp)
@@ -98,7 +104,7 @@ Firmware=`uname -v`
 echo ${Firmware}
 Kernel=`uname -mrs`
 echo ${Kernel}
-Distrib=`cat /etc/*-release | grep PRETTY_NAME=`
+Distrib=`grep PRETTY_NAME=  /etc/*-release`
 echo ${Distrib}
 IP=`/sbin/ifconfig eth0 | grep "inet ad" | cut -d ":" -f 2 | cut -d " " -f 1`
 echo ${IP}
